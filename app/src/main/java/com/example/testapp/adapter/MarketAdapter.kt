@@ -11,8 +11,7 @@ import com.example.testapp.databinding.ItemMarketBinding
 import com.example.testapp.model.MarketDataClass
 
 class MarketAdapter(var list: ArrayList<MarketDataClass.Market>) :
-    RecyclerView.Adapter<MarketAdapter.MarketItemViewHolder>()
-/*PagingDataAdapter<MarketDataClass.Market, MarketAdapter.MarketItemViewHolder>(diffCallback)*/ {
+    RecyclerView.Adapter<MarketAdapter.MarketItemViewHolder>() {
 
     private var limit = 10
     var num = 1

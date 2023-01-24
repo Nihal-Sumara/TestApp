@@ -17,7 +17,6 @@ import com.example.testapp.adapter.MarketAdapter
 import com.example.testapp.databinding.ActivityMainBinding
 import com.example.testapp.model.MarketDataClass
 import com.example.testapp.viewmodel.MarketViewModel
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -52,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         marketAdapter.onItemClick = { position ->
             favouriteList.add(list[position])
             Toast.makeText(this, "Added to favourite", Toast.LENGTH_SHORT).show()
-            Log.e("favouriteList", "setupRecyclerView ${Gson().toJson(favouriteList)}")
         }
         binding.rvMarket.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -69,15 +67,7 @@ class MainActivity : AppCompatActivity() {
                 lastVisibleItems = manager.findLastCompletelyVisibleItemPosition()
 
 //                scrolledOutItems = manager.findFirstVisibleItemPosition()
-                Log.e(
-                    "isScrolling",
-                    "onScrolled: $currentItems>>>>$totalItems>>>>$scrolledOutItems>>>>$isScrolling"
-                )
                 if (isScrolling && (lastVisibleItems == 10)) {
-                    Log.e(
-                        "insisde",
-                        "onScrolled: $currentItems>>>>$totalItems>>>>$scrolledOutItems>>>>$isScrolling"
-                    )
                     isScrolling = false
                     loadData()
                 }
@@ -112,8 +102,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.favourite -> {
-                startActivity(Intent(this,FavouriteActivity::class.java).putExtra("FAVOURITE_LIST",favouriteList))
-                Log.e("send", "onOptionsItemSelected: $favouriteList")
+                startActivity(
+                    Intent(this, FavouriteActivity::class.java).putExtra(
+                        "FAVOURITE_LIST",
+                        favouriteList
+                    )
+                )
             }
         }
         return super.onOptionsItemSelected(item)

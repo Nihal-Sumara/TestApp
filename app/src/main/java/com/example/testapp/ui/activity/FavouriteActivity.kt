@@ -1,24 +1,17 @@
 package com.example.testapp.ui.activity
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.testapp.R
 import com.example.testapp.adapter.MarketAdapter
 import com.example.testapp.databinding.ActivityFavouriteBinding
 import com.example.testapp.model.MarketDataClass
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonElement
 
 class FavouriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavouriteBinding
     private lateinit var marketAdapter: MarketAdapter
     private var list = ArrayList<MarketDataClass.Market>()
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourite)
